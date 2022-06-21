@@ -31,14 +31,18 @@ function main() {
 }
 
 function createStaff() {
+  const firstName = faker.name.firstName();
+  const lastName = faker.name.lastName();
+  const payRate = Math.floor(Math.random() * 16) + 15;
+
   return {
-    'First name': faker.name.firstName(),
-    'Last name': faker.name.lastName(),
+    'First name': firstName,
+    'Last name': lastName,
     'Phone Number': ' ',
-    Email: `generated_${faker.internet.email()}`,
+    Email: `generated.${firstName.toLowerCase()}.${lastName.toLowerCase()}@mailinator.com`,
     Title: faker.lorem.word(8),
     'Start Date': '6/7/2022',
-    'Pay Rate': 20,
+    'Pay Rate': payRate,
     'Pay Type': 'Per Hour',
     State: 'TN',
   };
