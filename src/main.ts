@@ -2,6 +2,48 @@ import { faker } from '@faker-js/faker';
 import fs from 'fs';
 import path from 'path';
 import { parse as jsonToCsv } from 'json2csv';
+import {format} from 'date-fns';
+
+const companyTitles = [
+  'Engineering Fellow',
+  'CEO',
+  'CTO',
+  'CIO','Chief Digital Officer','Chief Innovation Officer',
+  'VP of Engineering','Director of Engineering',
+  'Chief Architect',
+  'Software Architect',
+  'Engineering Project Manager/Engineering Manager',
+  'Technical Lead','Engineering Lead','Team Lead',
+  'Principal Software Engineer',
+  'Senior Software Engineer','Senior Software Developer',
+  'Software Engineer',
+  'Software Developer',
+  'Junior Software Developer',
+  'Intern Software Developer',
+  'HR Coordinator',
+  'Payroll Coordinator',
+  'Recruiting Coordinator',
+  'HR Specialist',
+  'HR Generalist',
+  'Recruiter',
+  'Human Resource Information Specialist',
+  'HR Manager',
+  'Recruiting Manager',
+  'HR Business Partner',
+  'HR Director',
+  'Recruiting Director',
+  'VP of HR',
+  'Chief Human Resource Officer',
+  'Career Consultant',
+  'Career Advisor',
+  'Assignment Coordinator',
+  'Placement Coordinator',
+  'Career Development Strategist',
+  'Personnel Agent',
+  'Human Resources Officer',
+]
+
+const payTypes = ['Per Hour', 'Salary', 'Contract']
 
 main();
 
@@ -38,13 +80,13 @@ function createStaff() {
   return {
     'First name': firstName,
     'Last name': lastName,
-    'Phone Number': ' ',
+    'Phone Number': faker.phone.phoneNumber('###-###-####'),
     Email: `generated.${firstName.toLowerCase()}.${lastName.toLowerCase()}@mailinator.com`,
-    Title: faker.lorem.word(8),
-    'Start Date': '6/7/2022',
+    Title: faker.helpers.arrayElement(companyTitles),
+    'Start Date': format(faker.date.past(1), 'MM/dd/yyyy'),
     'Pay Rate': payRate,
-    'Pay Type': 'Per Hour',
-    State: 'TN',
+    'Pay Type': faker.helpers.arrayElement(payTypes),
+    State: faker.address.stateAbbr(),
   };
 }
 
